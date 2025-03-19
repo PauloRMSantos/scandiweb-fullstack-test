@@ -41,19 +41,12 @@ CREATE TABLE attributes (
 CREATE TABLE product_attribute_sets (
     id INT PRIMARY KEY,
     product_id INT REFERENCES products(id),
-    attribute_id INT REFERENCES attributes(id)
+    attribute_id SERIAL REFERENCES attributes(id)
 );
 
 CREATE TABLE attribute_items (
     id INT PRIMARY KEY,
-    attribute_id INT REFERENCES attributes(id),
-    display_value VARCHAR(100),
-    value VARCHAR(100)
-);
-
-CREATE TABLE attribute_items (
-    id INT PRIMARY KEY,
-    attribute_id INT REFERENCES attributes(id),
+    attribute_id SERIAL REFERENCES attributes(id),
     display_value VARCHAR(100),
     value VARCHAR(100)
 );
@@ -66,4 +59,14 @@ CREATE TABLE orders(
     updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
--- Populain
+CREATE TABLE order_itens(
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    order_id BIGINT REFERENCES orders(id),
+    product_id INT REFERENCES products(id),
+    product_name VARCHAR(250) NOT NULL,
+    quantity INT DEFAULT 1,
+	created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+)
+
+-- Populating
