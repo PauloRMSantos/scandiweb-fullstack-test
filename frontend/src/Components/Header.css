@@ -1,0 +1,6 @@
+@import url("https://fonts.google.com/specimen/Open+Sans?preview.text=WOMEN");
+@import "tailwindcss";
+
+.container {
+    height: 80px;
+}
